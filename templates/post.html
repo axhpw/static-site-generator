@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <article>
+        <div class="content">
+            <h1>{{ title }}</h1>
+            <p><em>{{ date_obj.strftime("%B %d, %Y") }}</em></p>
+            {{ content | safe }}
+        </div>
+    </article>
+{% endblock %}
