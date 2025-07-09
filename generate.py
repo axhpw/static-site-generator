@@ -73,7 +73,8 @@ def buildAndCollect():
                 title=title,
                 content=html,
                 metadata=post.metadata,
-                date_obj=date_obj
+                date_obj=date_obj,
+                stylesheet='/style.css'
             )
 
             # Write out
@@ -111,10 +112,11 @@ def generateIndexes(dir_posts, has_index_md):
         os.makedirs(out_dir, exist_ok=True)
         index_path = os.path.join(out_dir, 'index.html')
 
-        template = env.get_template('base.html')
+        template = env.get_template('posts.html')
         rendered = template.render(
             title = f"Index of /{rel_dir}" if rel_dir else "Home",
-            content = posts
+            posts = posts,
+            stylesheet = '/style.css'
         )
         open(index_path, 'w', encoding='utf-8').write(rendered)
         print(f"Generated index: {index_path}")
