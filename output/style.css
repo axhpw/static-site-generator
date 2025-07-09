@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(33, 33, 33);
+    color: rgb(196, 196, 196);
+    font-family: 'Roboto', sans-serif;
+}
+
+.content, .navigation {
+    margin: 0 auto;
+    padding: 10px;
+    width: 60%;
+}
+
+.navigation ul {
+    list-style: none;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.navigation ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: rgb(196, 196, 196);
+}
+
+.navigation ul li a:hover {
+    color: white;
+}
+
+.content ul {
+    list-style: none;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+}
+
+.content p a {
+    text-decoration: none;
+    color: white;
+}
+
+.post-title {
+    margin-right: 10px;
+    color: rgb(196, 196, 196);
+    text-decoration: none;
+    font-size: 28px;
+}
+.post-title:hover {
+    color:white;
+}
