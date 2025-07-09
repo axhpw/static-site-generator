@@ -22,17 +22,29 @@ def mdToHtml(md_content):
     html = markdown.markdown(md_content, extensions=['extra', 'codehilite', 'pymdownx.tasklist' ])
     return html
 
-def buildSite():
+def getOutputPath(md_path):
+    rel = os.path.relpath(md_path, CONTENT_DIR)
+    slug, _ = os.path.splitext(rel)
 
+    if os.path.basename(slug) == 'index':
+        parent = os.path.dirname(slug)
+        if parent == '':
+            return os.path.join(OUTPUT_DIR, 'index.html')
+        return os.path.join(OUTPUT_DIR, parent, 'index.html')
+    
+    return os.path.join(OUTPUT_DIR, slug, 'index.html')
+
+def buildSite():
     posts = []
 
     for root, dirs, files in os.walk(CONTENT_DIR):
         for file in files:
             if file.endswith('.md'):
                 md_path = os.path.join(root, file)
-                rel_path = os.path.relpath(md_path, CONTENT_DIR)
-                output_path = os.path.join(OUTPUT_DIR, rel_path)
-                output_path = output_path.replace('.md', '.html')
+                # rel_path = os.path.relpath(md_path, CONTENT_DIR)
+                # output_path = os.path.join(OUTPUT_DIR, rel_path)
+                # output_path = output_path.replace('.md', '.html')
+                output_path = getOutputPath(md_path)
 
                 # Make sure output subdirectories exist
                 os.makedirs(os.path.dirname(output_path), exist_ok=True)
