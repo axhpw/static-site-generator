@@ -19,10 +19,7 @@ template = env.get_template('base.html')
 
 def mdToHtml(md_content):
     """Convert markdown text to html"""
-    html = markdown.markdown(md_content, extensions=['extra', 
-                                                     'codehilite',
-                                                     'pymdownx.tasklist'
-                                                     ])
+    html = markdown.markdown(md_content, extensions=['extra', 'codehilite', 'pymdownx.tasklist' ])
     return html
 
 def buildSite():
