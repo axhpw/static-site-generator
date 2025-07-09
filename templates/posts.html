@@ -8,8 +8,8 @@
         <ul>
           {% for p in posts %}
             <li>
-              <a href="{{ p.url }}">{{ p.title }}</a>
-              {% if p.date %}<small>{{ p.date.strftime('%Y-%m-%d') }}</small>{% endif %}
+              <a class="post-title" href="{{ p.url }}">{{ p.title }}</a>
+              {% if p.date %}<small>{{ p.date.strftime('%B %d, %Y') }}</small>{% endif %}
             </li>
           {% endfor %}
         </ul>
