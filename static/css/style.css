@@ -1,8 +1,18 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+}
+
+[data-theme='dark'] {
+    --bg-color: rgb(33, 33, 33);
+    --text-color: rgb(196, 196, 196);
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: rgb(33, 33, 33);
-    color: rgb(196, 196, 196);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Roboto', sans-serif;
 }
 
