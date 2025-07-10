@@ -1,11 +1,13 @@
 :root {
     --bg-color: #ffffff;
     --text-color: #000000;
+    --hover-color: rgb(41, 41, 41);
 }
 
 [data-theme='dark'] {
     --bg-color: rgb(33, 33, 33);
     --text-color: rgb(196, 196, 196);
+    --hover-color: white; 
 }
 
 body {
@@ -36,11 +38,11 @@ body {
 
 .navigation ul li a {
     text-decoration: none;
-    color: rgb(196, 196, 196);
+    color: var(--text-color);
 }
 
-.navigation ul li a:hover {
-    color: white;
+.navigation ul li a:hover, span:hover {
+    color: var(--hover-color);
 }
 
 .content ul {
