@@ -1,5 +1,6 @@
 import os
 import sys
+import shutil
 import markdown
 import frontmatter
 from datetime import datetime
@@ -9,6 +10,7 @@ from collections import defaultdict
 CONTENT_DIR = 'content'
 OUTPUT_DIR = 'output'
 TEMPLATE_DIR = 'templates'
+STATIC_DIR = 'static'
 
 force = '--force' in sys.argv
 
@@ -74,7 +76,7 @@ def buildAndCollect():
                 content=html,
                 metadata=post.metadata,
                 date_obj=date_obj,
-                stylesheet='/style.css'
+                stylesheet='/css/style.css'
             )
 
             # Write out
@@ -116,11 +118,26 @@ def generateIndexes(dir_posts, has_index_md):
         rendered = template.render(
             title = f"Index of /{rel_dir}" if rel_dir else "Home",
             posts = posts,
-            stylesheet = '/style.css'
+            stylesheet = '/css/style.css'
         )
         open(index_path, 'w', encoding='utf-8').write(rendered)
         print(f"Generated index: {index_path}")
 
+def copyStatic():
+    static_out = os.path.join(OUTPUT_DIR)
+    if os.path.exists(STATIC_DIR):
+        for root, dirs, files in os.walk(STATIC_DIR):
+            rel_path = os.path.relpath(root, STATIC_DIR)
+            dest_dir = os.path.join(static_out, rel_path)
+            os.makedirs(dest_dir, exist_ok=True)
+
+            for file in files:
+                src_file = os.path.join(root, file)
+                dest_file = os.path.join(dest_dir, file)
+                shutil.copy2(src_file, dest_file)
+                print(f"Copied static file: {dest_file}")
+
 if __name__ == '__main__':
     dir_posts, has_index_md = buildAndCollect()
     generateIndexes(dir_posts, has_index_md)
+    copyStatic()
