@@ -1,5 +1,4 @@
 __pycache__/
 .venv/
 content
-output/**/*.html
-output/*.html
+output/
